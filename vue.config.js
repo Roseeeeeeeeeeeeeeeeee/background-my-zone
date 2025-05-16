@@ -38,10 +38,31 @@ module.exports = {
     },
     proxy:{
       '/res':{
-        target:'http://localhost:7001'
+        target:'http://127.0.0.1:7001',
+       
+
+        
+      },
+      '/api':{ 
+        target:'http://127.0.0.1:7001',
+      
+        // pathRewrite: { '^/api': '' },
+        // onProxyReq(proxyReq, req, res) {
+        //   const originalUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+        //   const proxyUrl = proxyReq.protocol + '//' + proxyReq.getHeader('host') + proxyReq.path;
+          
+        //   console.log('\n====== 代理调试信息 ======');
+        //   console.log('前端请求URL:', originalUrl);     // http://localhost:8080/api/user
+        //   console.log('实际代理URL:', proxyUrl);        // http://your-real-api.com/user
+        //   console.log('代理配置:', {
+        //     target: this.target,
+        //     pathRewrite: this.pathRewrite
+        //   });
+        //   console.log('========================\n');
+        // }
       }
     },
-    before: require('./mock/mock-server.js')
+    // before: require('./mock/mock-server.js')
   },
   configureWebpack: {
     // provide the app's title in webpack's name field, so that

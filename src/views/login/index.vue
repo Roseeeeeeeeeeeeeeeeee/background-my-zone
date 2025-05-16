@@ -40,7 +40,7 @@
       <el-checkbox v-model="loginForm.checked" class="checkbox">7天内免登录</el-checkbox>
 
       <el-button :loading="loading" type="primary" style="width:100%;margin-bottom:30px;"
-        @click.native.prevent="handleLogin">登陆</el-button>
+        @click.native.prevent="handleLogin">登录</el-button>
 
       <!-- <div class="tips">
         <span style="margin-right:20px;">username: admin</span>
@@ -54,7 +54,7 @@
 
 <script>
 import { validUsername } from '@/utils/validate'
-import { getCaptcha } from '@/api/login'
+import { getCaptcha } from '@/api/captcha'
 export default {
   name: 'Login',
   data() {
@@ -78,8 +78,9 @@ export default {
         loginId: '',
         loginPwd: '',
         captcha: '',
-        checked:true
+        checked:false,
       },
+
       loginRules: {
         loginId: [
           {
@@ -136,12 +137,26 @@ export default {
     handleLogin() {
       this.$refs.loginForm.validate(valid => {
         if (valid) {
-          this.loading = true
+          this.loading = true //开启登录按钮的加载效果
+          if(this.loginForm.checked)
+        {
+          this.loginForm.remember = 7
+        }
+         
           this.$store.dispatch('user/login', this.loginForm).then(() => {
             this.$router.push({ path: this.redirect || '/' })
             this.loading = false
-          }).catch(() => {
+          }).catch((err) => {
             this.loading = false
+            if(typeof err === 'string'){
+              this.$message.error('验证码错误')
+
+            }else{
+              this.$message.error('账号或密码错误')
+            }
+            this.getCaptchaFunc()
+            this.loginForm.captcha = '';
+
           })
         } else {
           console.log('error submit!!')
