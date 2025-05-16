@@ -1,5 +1,6 @@
 import request from '@/utils/request'
 
+//登录方法
 export function loginApi(data) {
   return request({
     url: '/api/admin/login',
@@ -9,11 +10,11 @@ export function loginApi(data) {
 }
 
 
-export function getInfo(token) {
+//恢复登录
+export function getInfo() {
   return request({
-    url: '/vue-admin-template/user/info',
+    url: '/api/admin/whoami',
     method: 'get',
-    params: { token }
   })
 }
 
