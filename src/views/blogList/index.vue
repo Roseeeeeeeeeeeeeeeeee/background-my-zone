@@ -163,6 +163,12 @@ export default {
             this.pageSize = nsize
             this.curPage = 1
             this.fetchData();
+        },
+        //编辑文章
+        handleStartEdit({id}){
+            
+            
+            this.$router.push(`/editBlog${id}`)
         }
 
     },

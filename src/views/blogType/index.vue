@@ -96,7 +96,7 @@ export default {
         },
         addOneType() {
             if (!this.input) {
-                this.$message.warn('必须提供分类名称')
+                this.$message.warning('必须提供分类名称')
             } else {
                 addBlogType({
                     name: this.input,
