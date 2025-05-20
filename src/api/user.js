@@ -9,6 +9,15 @@ export function loginApi(data) {
   })
 }
 
+// 修改用户
+export function setUser(data){
+  return request({
+    url : '/api/admin',
+    method : 'PUT',
+    data
+  })
+}
+
 
 //恢复登录
 export function getInfo() {
