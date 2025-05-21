@@ -113,14 +113,14 @@
           </el-form-item>
            <el-form-item label="QQ 二维码图片地址">
             <!-- <el-input v-model="form2.qqQrCode"></el-input> -->
-            <Upload v-model="form2.qqQrCode"/>
+            <UploadImage v-model="form2.qqQrCode"/>
           </el-form-item>
            <el-form-item label="微信号">
             <el-input v-model="form2.weixin"></el-input>
           </el-form-item>
            <el-form-item label="微信二维码图片地址">
             <!-- <el-input v-model="form2.weixinQrCode"></el-input> -->
-            <Upload v-model="form2.weixinQrCode"/>
+            <UploadImage v-model="form2.weixinQrCode"/>
           </el-form-item>
         </el-form>
         <div slot="footer" class="dialog-footer">
@@ -180,9 +180,9 @@
         getSetting().then(res=>{
           this.form = res.data;
           // 处理图片的链接
-          // this.form.avatar2 = server_URL  + this.form.avatar;
-          // this.form.qqQrCode2 = server_URL  + this.form.qqQrCode;
-          // this.form.weixinQrCode2 = server_URL  + this.form.weixinQrCode;
+        //   this.form.avatar2 = server_URL  + this.form.avatar;
+        //   this.form.qqQrCode2 = server_URL  + this.form.qqQrCode;
+        //   this.form.weixinQrCode2 = server_URL  + this.form.weixinQrCode;
           this.form2 = {...this.form};
         })
       },
